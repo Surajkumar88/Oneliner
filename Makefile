@@ -6,7 +6,7 @@ all:
 
 install:
 	@mkdir -p $(PATH)
-	@cp -p oneliner_app.sh $(PATH)
+	@cp -p oneliner $(PATH)
 
 uninstall:
-	@rm -rf $(PATH)/oneliner_app.sh
+	@rm -rf $(PATH)/oneliner
