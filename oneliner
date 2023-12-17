@@ -27,8 +27,11 @@ while [[ $1 ]];do
             case $2 in 
                 "off") break ;;
                 "on" | "-" | *)
-                    echo "$final" | pbcopy
-                    echo "File copied to clipboard!!!"
+                    if [[ -z final ]]
+                    then
+                        echo "$final" | pbcopy
+                        echo "File copied to clipboard!!!"
+                    fi
                 ;;
             esac
         ;;
@@ -36,7 +39,10 @@ while [[ $1 ]];do
             case $2 in 
                 "off") break ;;
                 "on" | "-" | *)
-                    echo $final
+                    if [[ -z final ]]
+                    then
+                        echo $final
+                    fi
                 ;;
             esac
         ;;
