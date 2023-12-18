@@ -1,14 +1,16 @@
 #!/bin/bash
 
+version="0.4.0-alpha"
+
 tmp_file_name="one_line_tmp.sh"
 tmp_file_path=$(pwd)"/"$tmp_file_name
 
-while [[ $1 ]];do
-    case $1 in
+while [[ "$1" ]]; do
+    case $1 in 
         "-f" | "--file")
             case $2 in
                 "-"*) break ;;
-                *)  file_path=$2
+                *)  file_path="$2"
                     tmp=$(cat $file_path | awk '{$1=$1;print}'); echo -n "$tmp" > $tmp_file_path
                     IFS=$'\n'
                     final=""
@@ -19,33 +21,33 @@ while [[ $1 ]];do
                     size=${#final}  ##size of the final line of command
                     rm -rf "$tmp_file_path"
                     #echo "$size"
-                    final="${final[@]:13:$size-15}"
+                    final="${final[@]:13:$size-15}" 
                 ;;
             esac
         ;;
         "-c" | "--copy")
-            case $2 in 
+            case $2 in
                 "off") break ;;
-                "on" | "-" | *)
-                    if [[ -z final ]]
-                    then
+                "on" | "-"* | *) 
+                    if [[ -n $final ]]; then
                         echo "$final" | pbcopy
-                        echo "File copied to clipboard!!!"
+                        echo "Code copied to clipboard!!!"
                     fi
                 ;;
             esac
         ;;
-        "-p" | "--prit")
-            case $2 in 
+        "-p" | "--print")
+                case $2 in 
                 "off") break ;;
-                "on" | "-" | *)
-                    if [[ -z final ]]
-                    then
+                "on" | "-"* | *) 
+                    if [[ -n $final ]]; then
                         echo $final
                     fi
                 ;;
-            esac
+            esac 
         ;;
+        "-v" | "--version")
+            echo "Oneliner v"$version
     esac
     shift
 done
