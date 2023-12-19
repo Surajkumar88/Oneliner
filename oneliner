@@ -10,18 +10,20 @@ while [[ "$1" ]]; do
         "-f" | "--file")
             case $2 in
                 "-"*) break ;;
-                *)  file_path="$2"
-                    tmp=$(cat $file_path | awk '{$1=$1;print}'); echo -n "$tmp" > $tmp_file_path
-                    IFS=$'\n'
-                    final=""
-                    for LINE in $(cat "$tmp_file_path")
-                        do final=$final$LINE" ;"
-                            #echo "$LINE"
-                    done
-                    size=${#final}  ##size of the final line of command
-                    rm -rf "$tmp_file_path"
-                    #echo "$size"
-                    final="${final[@]:13:$size-15}" 
+                *)  if [[ -n "$2" ]]; then
+                        file_path="$2"
+                        tmp=$(cat $file_path | awk '{$1=$1;print}'); echo -n "$tmp" > $tmp_file_path
+                        IFS=$'\n'
+                        final=""
+                        for LINE in $(cat "$tmp_file_path")
+                            do final=$final$LINE" ;"
+                                #echo "$LINE"
+                        done
+                        size=${#final}  ##size of the final line of command
+                        rm -rf "$tmp_file_path"
+                        #echo "$size"
+                        final="${final[@]:13:$size-15}" 
+                    fi
                 ;;
             esac
         ;;
