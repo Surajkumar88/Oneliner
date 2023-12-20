@@ -50,6 +50,10 @@ while [[ "$1" ]]; do
         ;;
         "-v" | "--version")
             echo "Oneliner v"$version
+        ;;
+        "-s" | "--save")
+            echo $final >> oneliner_out.txt
+            printf "Output saved to current working directory!!!"
     esac
     shift
 done
