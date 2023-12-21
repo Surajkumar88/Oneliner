@@ -74,13 +74,15 @@ while [[ "$1" ]]; do
         ;;
         "-v" | "--version")
             echo "Oneliner v"$version
+            break
         ;;
-        "-s" | "--save")
+        "-o" | "--output")
             echo $final >> oneliner_out.txt
             printf "Output saved to current working directory!!!"
         ;;
         "-h" | "--help")
             help_guide
+            break
     esac
     shift
 done
