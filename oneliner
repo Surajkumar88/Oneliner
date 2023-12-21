@@ -2,6 +2,27 @@
 
 version="0.4.0-alpha"
 
+#    usage: git [-f | --file <file_path>] [-p | -print] [-c | --copy]
+#               [-v | --version] [-s | --save] [-h | --help]
+
+help_guide() {
+    printf "%s" "\
+    usage: git [-f | --file <file_path>] [-options <value>]
+
+    Options:            Expected value      Description
+        -f, --file      source path         path to the source file with the code to convert
+        -o, --output                        save the output to file oneliner_out.txt in the 
+                                            current working directory
+        -p, --print     on/off              verbose output in CLI
+        -c, --copy      on/off              copy the output in clipboard 
+        -h, --help                          display this help and exit
+        -v, --version                       show version for Oneliner
+
+        Report bugs/issues to https://github.com/Surajkumar88/Oneliner/issues
+      "
+    printf "\n"
+}
+
 tmp_file_name="one_line_tmp.sh"
 tmp_file_path=$(pwd)"/"$tmp_file_name
 
@@ -57,6 +78,9 @@ while [[ "$1" ]]; do
         "-s" | "--save")
             echo $final >> oneliner_out.txt
             printf "Output saved to current working directory!!!"
+        ;;
+        "-h" | "--help")
+            help_guide
     esac
     shift
 done
