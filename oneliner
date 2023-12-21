@@ -11,8 +11,8 @@ help_guide() {
 
     Options:            Expected value      Description
         -f, --file      source path         path to the source file with the code to convert
-        -o, --output                        save the output to file oneliner_out.txt in the 
-                                            current working directory
+        -o, --output    file path           save the output to file oneliner_out.txt in the given
+                                            path (defaults to current working directory)
         -p, --print     on/off              verbose output in CLI
         -c, --copy      on/off              copy the output in clipboard 
         -h, --help                          display this help and exit
@@ -77,8 +77,12 @@ while [[ "$1" ]]; do
             break
         ;;
         "-o" | "--output")
-            echo $final >> oneliner_out.txt
-            printf "Output saved to current working directory!!!"
+            output_file_path="$2"/oneliner_out.txt
+            if [[ -e $output_file_path ]]; then
+                rm -rf $output_file_path
+            fi
+            echo $final >> $output_file_path
+            printf "Output saved to $output_file_path !!! \n"
         ;;
         "-h" | "--help")
             help_guide
