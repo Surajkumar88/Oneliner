@@ -1,11 +1,11 @@
 #!/bin/bash
 
-version="0.4.0-alpha"
+version="0.8.0-beta"
 
-#    usage: git [-f | --file <file_path>] [-p | -print] [-c | --copy]
-#               [-v | --version] [-s | --save] [-h | --help]
+
 
 help_guide() {
+    #alternate longform usage: usage: git [-f | --file <file_path>] [-p | -print] [-c | --copy] [-v | --version] [-s | --save] [-h | --help]
     printf "%s" "\
     usage: git [-f | --file <file_path>] [-options <value>]
 
@@ -19,75 +19,103 @@ help_guide() {
         -v, --version                       show version for Oneliner
 
         Report bugs/issues to https://github.com/Surajkumar88/Oneliner/issues
-      "
-    printf "\n"
+      " 
+      printf "\n"
+    exit 0
 }
 
-tmp_file_name="one_line_tmp.sh"
-tmp_file_path=$(pwd)"/"$tmp_file_name
+init_default() {
+    tmp_file_name="one_line_tmp.sh"
+    tmp_file_path=$(pwd)"/"$tmp_file_name
 
-while [[ "$1" ]]; do
-    case $1 in 
-        "-f" | "--file")
-            case $2 in
-                "-"*) break ;;
-                *)  if [[ -n "$2" ]]; then
-                        file_path="$2"
-                        if [[ -e $tmp_file_path ]]; then
-                            rm -rf $tmp_file_path
-                        fi
-                        tmp=$(cat $file_path | awk '{$1=$1;print}'); echo -n "$tmp" > $tmp_file_path
-                        IFS=$'\n'
-                        final=""
-                        for LINE in $(cat "$tmp_file_path")
-                            do final=$final$LINE" ;"
-                                #echo "$LINE"
-                        done
-                        size=${#final}  ##size of the final line of command
-                        rm -rf "$tmp_file_path"
-                        #echo "$size"
-                        final="${final[@]:13:$size-15}" 
-                    fi
-                ;;
-            esac
-        ;;
-        "-c" | "--copy")
-            case $2 in
-                "off") break ;;
-                "on" | "-"* | *) 
-                    if [[ -n $final ]]; then
-                        echo "$final" | pbcopy
-                        echo "Code copied to clipboard!!!"
-                    fi
-                ;;
-            esac
-        ;;
-        "-p" | "--print")
-                case $2 in 
-                "off") break ;;
-                "on" | "-"* | *) 
-                    if [[ -n $final ]]; then
-                        echo $final
-                    fi
-                ;;
-            esac 
-        ;;
-        "-v" | "--version")
-            echo "Oneliner v"$version
-            break
-        ;;
-        "-o" | "--output")
-            output_file_path="$2"/oneliner_out.txt
-            if [[ -e $output_file_path ]]; then
-                rm -rf $output_file_path
+    to_copy="off"
+    to_print="off"
+    output_file_name="oneliner_out.txt"
+    output_file_path=$(pwd)"/"$output_file_name
+}
+
+converter(){
+    if [[ -e $tmp_file_path ]]; then
+        rm -rf $tmp_file_path
+    fi
+    if [[ -n $file_path && $file_path != "-"* ]]; then 
+        tmp=$(cat $file_path | awk '{$1=$1;print}'); echo -n "$tmp" > $tmp_file_path
+        IFS=$'\n'
+        final=""
+        for LINE in $(cat "$tmp_file_path")
+            do final=$final$LINE" ;"
+                #echo "$LINE"
+        done
+        size=${#final}
+        rm -rf "$tmp_file_path"
+        final="${final[@]:13:$size-15}" 
+    else
+        echo $file_path": no such file or directory"
+    fi
+}
+
+out_to_file() {
+    if [[ $to_out != "on" ]]; then
+        exit 1
+    fi
+    if [[ -e $output_file_path ]]; then
+        rm -rf $output_file_path
+    fi
+    echo $final >> $output_file_path
+    printf "Output saved to $output_file_path !!! \n"
+}
+
+printer() {
+    case $to_print in 
+        "off") ;;
+        "on" | "-"* | *) 
+            if [[ -n $final ]]; then
+                echo $final
             fi
-            echo $final >> $output_file_path
-            printf "Output saved to $output_file_path !!! \n"
-        ;;
-        "-h" | "--help")
-            help_guide
-            break
     esac
-    shift
-done
+}
 
+copy() {
+    case $to_copy in
+        "off") ;;
+        "on" | "-"* | *) 
+            if [[ -n $final ]]; then
+                echo "$final" | pbcopy
+                echo "Code copied to clipboard!!!"
+            fi
+        ;;
+    esac
+}
+
+get_args() {
+        
+    while [[ "$1" ]]; do
+        case $1 in 
+            "-f" | "--file") file_path="$2" ;;
+            "-c" | "--copy") to_copy="$2" ;;
+            "-o" | "--output") 
+                if [[ -n $2 ]]; then output_file_path="$2"/oneliner_out.txt ; fi
+                to_out="on"
+            ;;
+            "-p" | "--print") to_print="$2" ;;
+            "-v" | "--version")
+                echo "Oneliner v"$version
+                exit 1
+            ;;
+            "-h" | "--help")
+                help_guide
+        esac
+        shift
+    done
+}
+
+main() {
+    init_default
+    get_args "$@"
+    converter
+    printer
+    copy 
+    out_to_file
+}
+
+main "$@"
