@@ -2,8 +2,6 @@
 
 version="0.8.0-beta"
 
-
-
 help_guide() {
     #alternate longform usage: usage: git [-f | --file <file_path>] [-p | -print] [-c | --copy] [-v | --version] [-s | --save] [-h | --help]
     printf "%s" "\
@@ -39,18 +37,18 @@ converter(){
         rm -rf $tmp_file_path
     fi
     if [[ -n $file_path && $file_path != "-"* ]]; then 
-        tmp=$(cat $file_path | awk '{$1=$1;print}'); echo -n "$tmp" > $tmp_file_path
+        tmp=$(cat $file_path | awk '{$1=$1;print}')
+        printf "$tmp\n" > $tmp_file_path
         IFS=$'\n'
         final=""
         for LINE in $(cat "$tmp_file_path")
             do final=$final$LINE" ;"
-                #echo "$LINE"
         done
         size=${#final}
         rm -rf "$tmp_file_path"
-        final="${final[@]:13:$size-15}" 
+        final="${final[@]:12:$size-14}" 
     else
-        echo $file_path": no such file or directory"
+        printf "%s: no such file or directory" $file_path
     fi
 }
 
@@ -61,7 +59,7 @@ out_to_file() {
     if [[ -e $output_file_path ]]; then
         rm -rf $output_file_path
     fi
-    echo $final >> $output_file_path
+    printf "%s" $final >> $output_file_path
     printf "Output saved to $output_file_path !!! \n"
 }
 
@@ -70,7 +68,7 @@ printer() {
         "off") ;;
         "on" | "-"* | *) 
             if [[ -n $final ]]; then
-                echo $final
+                printf "%s \n" $final
             fi
     esac
 }
@@ -80,8 +78,8 @@ copy() {
         "off") ;;
         "on" | "-"* | *) 
             if [[ -n $final ]]; then
-                echo "$final" | pbcopy
-                echo "Code copied to clipboard!!!"
+                printf "%s" $final | pbcopy
+                printf "Code copied to clipboard!!! \n"
             fi
         ;;
     esac
@@ -99,7 +97,7 @@ get_args() {
             ;;
             "-p" | "--print") to_print="$2" ;;
             "-v" | "--version")
-                echo "Oneliner v"$version
+                printf "Oneliner v%s \n" $version
                 exit 1
             ;;
             "-h" | "--help")
