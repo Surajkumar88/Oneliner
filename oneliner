@@ -12,6 +12,7 @@ help_guide() {
         -o, --output    file path           save the output to file oneliner_out.txt in the given
                                             path (defaults to current working directory)
         -p, --print     on/off              verbose output in CLI
+        -m, --multiline on/off              output/copy file contents with source formatting 
         -c, --copy      on/off              copy the output in clipboard 
         -h, --help                          display this help and exit
         -v, --version                       show version for Oneliner
