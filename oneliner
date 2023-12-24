@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="0.8.0-beta"
+version="1.0.0"
 
 help_guide() {
     #alternate longform usage: usage: git [-f | --file <file_path>] [-p | -print] [-c | --copy] [-v | --version] [-s | --save] [-h | --help]
