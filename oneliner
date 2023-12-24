@@ -64,7 +64,7 @@ out_to_file() {
     if [[ -e $output_file_path ]]; then
         rm -rf $output_file_path
     fi
-    printf "%s \n" $final >> $output_file_path
+    printf "%s \n" $final > $output_file_path
     printf "Output saved to $output_file_path !!! \n"
 }
 
