@@ -4,7 +4,7 @@
 
 <p align="center">
 <a href="./LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
-<a href="https://github.com/dylanaraps/neofetch/releases"><img src="https://img.shields.io/github/release/dylanaraps/neofetch.svg"></a>
+<a href="https://github.com/Surajkumar88/Oneliner/releases"><img src="https://img.shields.io/github/v/release/Surajkumar88/Oneliner"></a>
 <a href="https://repology.org/metapackage/oneliner"><img src="https://repology.org/badge/tiny-repos/oneliner.svg" alt="Packaging status"></a>
 </p>
 
