@@ -12,6 +12,7 @@ help_guide() {
         -o, --output    file path           save the output to file oneliner_out.txt in the given
                                             path (defaults to current working directory)
         -p, --print     on/off              verbose output in CLI
+        -m, --multiline on/off              output/copy file contents with source formatting 
         -c, --copy      on/off              copy the output in clipboard 
         -h, --help                          display this help and exit
         -v, --version                       show version for Oneliner
@@ -25,9 +26,10 @@ help_guide() {
 init_default() {
     tmp_file_name="one_line_tmp.sh"
     tmp_file_path=$(pwd)"/"$tmp_file_name
-
+    final=""
     to_copy="off"
     to_print="off"
+    to_multiline="off"
     output_file_name="oneliner_out.txt"
     output_file_path=$(pwd)"/"$output_file_name
 }
@@ -37,16 +39,19 @@ converter(){
         rm -rf $tmp_file_path
     fi
     if [[ -n $file_path && $file_path != "-"* ]]; then 
-        tmp=$(cat $file_path | awk '{$1=$1;print}')
-        printf "$tmp\n" > $tmp_file_path
         IFS=$'\n'
-        final=""
-        for LINE in $(cat "$tmp_file_path")
-            do final=$final$LINE" ;"
-        done
-        size=${#final}
+        if [[ $to_multiline = "off" ]]; then
+            tmp=$(cat $file_path | awk '{$1=$1;print}')
+            printf "$tmp\n" > $tmp_file_path
+            for LINE in $(cat "$tmp_file_path")
+                do final=$final$LINE" ;"
+            done
+            size=${#final}
+            final="${final[@]:12:$size-14}" 
+        else
+            final=$(<$file_path)
+        fi
         rm -rf "$tmp_file_path"
-        final="${final[@]:12:$size-14}" 
     else
         printf "%s: no such file or directory" $file_path
     fi
@@ -59,7 +64,7 @@ out_to_file() {
     if [[ -e $output_file_path ]]; then
         rm -rf $output_file_path
     fi
-    printf "%s" $final >> $output_file_path
+    printf "%s \n" $final > $output_file_path
     printf "Output saved to $output_file_path !!! \n"
 }
 
@@ -78,7 +83,7 @@ copy() {
         "off") ;;
         "on" | "-"* | *) 
             if [[ -n $final ]]; then
-                printf "%s" $final | pbcopy
+                printf "%s" "$final" | pbcopy
                 printf "Code copied to clipboard!!! \n"
             fi
         ;;
@@ -96,6 +101,7 @@ get_args() {
                 to_out="on"
             ;;
             "-p" | "--print") to_print="$2" ;;
+            "-m" | "--multiline") to_multiline="$2" ;;
             "-v" | "--version")
                 printf "Oneliner v%s \n" $version
                 exit 1
