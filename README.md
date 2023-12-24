@@ -6,6 +6,7 @@
 <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
 <a href="https://github.com/Surajkumar88/Oneliner/releases"><img src="https://img.shields.io/github/v/release/Surajkumar88/Oneliner"></a>
 <a href="https://repology.org/metapackage/oneliner"><img src="https://repology.org/badge/tiny-repos/oneliner.svg" alt="Packaging status"></a>
+<a href="https://tiswww.case.edu/php/chet/bash/bashtop.html"><img src="https://img.shields.io/badge/Bash-v4.4%5E-green?logo=GNU%20bash"></a>
 </p>
 
 ![OSX](https://img.shields.io/badge/-OSX-black?logo=apple)
@@ -38,7 +39,7 @@ A command-line tool to convert multi-line bash script into a single line command
 
 ## Dependencies
 
-## OSX
+#### OSX
 
 Use **[bash](https://www.gnu.org/software/bash/)** (v4.4 or later), script functionality migth break with earlier versions. 
 
