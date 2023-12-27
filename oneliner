@@ -36,7 +36,7 @@ init_default() {
 
 converter(){
     if [[ -e $tmp_file_path ]]; then
-        rm -rf $tmp_file_path
+        rm -rf "$tmp_file_path"
     fi
     if [[ -n $file_path && $file_path != "-"* ]]; then 
         IFS=$'\n'
@@ -47,7 +47,7 @@ converter(){
                 do final=$final$LINE" ;"
             done
             size=${#final}
-            final="${final[@]:12:$size-14}" 
+            final="${final[@]:13:$size-14}" 
         else
             final=$(<$file_path)
         fi
