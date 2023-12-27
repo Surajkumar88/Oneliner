@@ -30,10 +30,8 @@ jobs:
         needs: check-makefile-on-osx
         steps:
             - uses: actions/checkout@v3
-            - name: intall make
+            - name: install make
               run: sudo apt-get install -y make
-            - name: Compiling make
-              run: make
             - name: Installing app
               run: make install
             - name: Uninstalling app
