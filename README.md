@@ -9,6 +9,7 @@
 <a href="https://tiswww.case.edu/php/chet/bash/bashtop.html"><img src="https://img.shields.io/badge/Bash-v4.4%5E-green?logo=GNU%20bash"></a>
 </p>
 
+[![Makefile test](https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml/badge.svg)](https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml)
 ![OSX](https://img.shields.io/badge/-OSX-black?logo=apple)
 
 
