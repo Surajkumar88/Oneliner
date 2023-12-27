@@ -7,6 +7,7 @@ all:
 install:
 	@mkdir -p $(PATH)/bin
 	@cp -p oneliner $(PATH)/bin/oneliner
+	@chmod 755 $(PATH)/bin/oneliner
 
 uninstall:
 	@rm -rf $(PATH)/bin/oneliner
