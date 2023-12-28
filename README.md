@@ -70,7 +70,7 @@ make DESTDIR=path/to/directory install
 > To uninstall
 
 ```bash
-sudo make uninstall
+make uninstall
 ```
 ## Usage
 ```bash
