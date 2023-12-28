@@ -7,12 +7,14 @@
 <a href="https://github.com/Surajkumar88/Oneliner/releases"><img src="https://img.shields.io/github/v/release/Surajkumar88/Oneliner"></a>
 <a href="https://repology.org/metapackage/oneliner"><img src="https://repology.org/badge/tiny-repos/oneliner.svg" alt="Packaging status"></a>
 <a href="https://tiswww.case.edu/php/chet/bash/bashtop.html"><img src="https://img.shields.io/badge/Bash-v4.4%5E-green?logo=GNU%20bash"></a>
+<a href="https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml"><img src="https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml/badge.svg"></a>
 </p>
 
-[![Makefile test](https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml/badge.svg)](https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml)
-![OSX](https://img.shields.io/badge/-OSX-black?logo=apple)
-
-
+<p align="center">
+<a><img src="https://img.shields.io/badge/-OSX-grey?logo=apple"></a>
+<a><img src="https://img.shields.io/badge/-Ubuntu-grey?logo=ubuntu"></a>
+<a><img src="https://img.shields.io/badge/-Centos-grey?logo=centos"></a>
+</p>
 ## Index
 
 * [Documents](#documents)
@@ -57,12 +59,18 @@ Use **[bash](https://www.gnu.org/software/bash/)** (v4.4 or later), script funct
 ```bash
 git clone https://github.com/Surajkumar88/Oneliner
 cd Oneliner
-sudo make install
+make install
 ```
+> To install in a custom directory
+```
+make DESTDIR=path/to/directory install
+```
+
+**NOTE**: You may have to run this as root.
 > To uninstall
 
 ```bash
-sudo make uninstall
+make uninstall
 ```
 ## Usage
 ```bash
