@@ -1,18 +1,20 @@
 
 distro = $(shell uname)
+# Setting the DESTDIR path based on the Distro detected
 ifeq ($(distro), Linux)
-	PATH = /usr/bin
+	DESTDIR = /usr/bin
 else 
 	ifeq ($(distro), Darwin)
-		PATH = /usr/local/bin
+		DESTDIR = /usr/local/bin
 	endif
 endif
 all:
-	echo Run \'make install\' to install OneLiner.
+	@echo Run \'make install\' to install OneLiner.
+	@echo Note: You may have to run this as root.
 
 install:
-	@mkdir -p $(PATH)
-	@cp -p oneliner $(PATH)
+	@mkdir -p $(DESTDIR)
+	@cp -p oneliner $(DESTDIR)
 
 uninstall:
-	@rm -rf $(PATH)/oneliner
+	@rm -rf $(DESTDIR)/oneliner
