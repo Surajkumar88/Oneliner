@@ -28,7 +28,7 @@
 
 ## Documents
 
-Add changelog file and link here
+#### [CHANGELOG.md](CHANGELOg.md)
 
 ## Description
 
