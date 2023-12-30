@@ -41,19 +41,25 @@ converter(){
     if [[ -n $file_path && $file_path != "-"* ]]; then 
         IFS=$'\n'
         if [[ $to_multiline = "off" ]]; then
-            tmp=$(cat $file_path | awk '{$1=$1;print}')
-            printf "$tmp\n" > $tmp_file_path
-            for LINE in $(cat "$tmp_file_path")
-                do final=$final$LINE" ;"
-            done
+            ###### depcreted tmp operation
+            # tmp=$(cat "$file_path" | awk '{$1=$1;print}')
+            tmp=$( awk '{$1=$1;print}' < "$file_path" )
+            printf "%s\n" "$tmp" > "$tmp_file_path"
+            ###### Deprecated read loop
+            # for LINE in $(cat "$tmp_file_path")
+            #     do final=$final$LINE" ;"
+            # done
+            while read -r line;
+                do final=$final$line" ;"
+            done < "$tmp_file_path"
             size=${#final}
-            final="${final[@]:13:$size-14}" 
+            final=${final[*]:15:$size-17} 
         else
-            final=$(<$file_path)
+            final=$(<"$file_path")
         fi
         rm -rf "$tmp_file_path"
     else
-        printf "%s: no such file or directory" $file_path
+        printf "%s: no such file or directory" "$file_path"
     fi
 }
 
@@ -62,10 +68,10 @@ out_to_file() {
         exit 1
     fi
     if [[ -e $output_file_path ]]; then
-        rm -rf $output_file_path
+        rm -rf "$output_file_path"
     fi
-    printf "%s \n" $final > $output_file_path
-    printf "Output saved to $output_file_path !!! \n"
+    printf "%s \n" "$final" > "$output_file_path"
+    printf "Output saved to %s !!! \n" "$output_file_path"
 }
 
 printer() {
@@ -73,7 +79,7 @@ printer() {
         "off") ;;
         "on" | "-"* | *) 
             if [[ -n $final ]]; then
-                printf "%s \n" $final
+                printf "%s \n" "$final"
             fi
     esac
 }
