@@ -39,3 +39,15 @@ jobs:
                 make install
                 oneliner -v
                 oneliner -h
+    deployment_to_staging_4:
+      runs-on: macos-latest
+      environment: staging
+      needs: deployment_to_staging_3
+      steps:
+          - uses: actions/checkout@v3
+          - name: 'Deploy to staging'
+            run: |
+              make install
+              oneliner -h
+              oneliner -v
+              
