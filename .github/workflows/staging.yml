@@ -10,7 +10,7 @@ on:
     workflow_dispatch:
 
 jobs:
-    deployment_to_staging_1:
+    staging_on_osx:
         runs-on: macos-latest
         environment: staging
         steps:
@@ -18,34 +18,15 @@ jobs:
             - name: 'Deploy to staging'
               run: |
                 make install
-    deployment_to_staging_2:
-        runs-on: macos-latest
-        needs: deployment_to_staging_1
-        environment: staging
-        steps: 
-            - uses: actions/checkout@v3
-            - name: 'Deploy to staging'
-              run: |
-                make install
-                oneliner -h
-    deployment_to_staging_3:
-        runs-on: macos-latest
-        environment: staging
-        needs: deployment_to_staging_2
-        steps:
-            - uses: actions/checkout@v3
-            - name: 'Deploy to staging'
-              run: |
-                make install
-                oneliner -h
                 oneliner -v
-    deployment_to_staging_4:
-      runs-on: macos-latest
-      environment: staging
-      steps:
-          - uses: actions/checkout@v3
-          - name: 'Deploy to staging'
-            run: |
-              make install
-              which oneliner
-              
+                oneliner -h
+    staging_on_ubuntu:
+        runs-on: ubuntu-latest
+        environment: staging
+        steps:
+            - uses: actions/checkout@v3
+            - name: 'Deploy to staging'
+              run: |
+                make install
+                oneliner -v
+                oneliner -h
