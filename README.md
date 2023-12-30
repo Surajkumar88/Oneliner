@@ -15,6 +15,7 @@
 <a><img src="https://img.shields.io/badge/-Ubuntu-grey?logo=ubuntu"></a>
 <a><img src="https://img.shields.io/badge/-Centos-grey?logo=centos"></a>
 </p>
+
 ## Index
 
 * [Documents](#documents)
@@ -28,7 +29,7 @@
 
 ## Documents
 
-#### [CHANGELOG.md](CHANGELOg.md)
+#### [CHANGELOG.md](CHANGELOG.md)
 
 ## Description
 
