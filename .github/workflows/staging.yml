@@ -1,0 +1,21 @@
+
+name: Staging deployment
+
+on:
+    push: 
+        branches:
+            - 'main'
+            - 'master'
+            - 'feat_staging'
+    workflow_dispatch:
+
+jobs:
+    deployment_to_staging:
+        runs-on: macos-latest
+        environment: staging
+        steps:
+            - uses: actions/checkout@v3
+            - name: 'Deploy to staging'
+              run: |
+                oneliner -v
+                oneliner -h
