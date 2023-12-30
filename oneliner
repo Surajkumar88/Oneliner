@@ -110,7 +110,7 @@ get_args() {
             "-m" | "--multiline") to_multiline="$2" ;;
             "-v" | "--version")
                 printf "Oneliner v%s \n" $version
-                exit 1
+                exit 0
             ;;
             "-h" | "--help")
                 help_guide

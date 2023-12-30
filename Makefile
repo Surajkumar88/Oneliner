@@ -15,6 +15,8 @@ all:
 install:
 	@mkdir -p $(DESTDIR)
 	@cp -p oneliner $(DESTDIR)
+	@echo "Oneliner v1.0.0 has been installed!!!"
 
 uninstall:
 	@rm -rf $(DESTDIR)/oneliner
+	@echo "Oneliner v1.0.0 has been uninstalled!!!"

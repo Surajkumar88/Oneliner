@@ -1,0 +1,32 @@
+
+name: Staging deployment
+
+on:
+    push: 
+        branches:
+            - 'main'
+            - 'master'
+            - 'feat_staging'
+    workflow_dispatch:
+
+jobs:
+    staging_on_osx:
+        runs-on: macos-latest
+        environment: staging
+        steps:
+            - uses: actions/checkout@v3
+            - name: 'Deploy to staging'
+              run: |
+                make install
+                oneliner -v
+                oneliner -h
+    staging_on_ubuntu:
+        runs-on: ubuntu-latest
+        environment: staging
+        steps:
+            - uses: actions/checkout@v3
+            - name: 'Deploy to staging'
+              run: |
+                sudo make install
+                oneliner -v
+                oneliner -h
