@@ -8,11 +8,10 @@ on:
             - 'main'
             - 'master'
         types: [completed]
-    push: 
-        branches:
-            - 'main'
-            - 'master'
-            - 'link_jobs'
+    # push: 
+    #     branches:
+    #         - 'main'
+    #         - 'master'
     workflow_dispatch:
 
 jobs:
