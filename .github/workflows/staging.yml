@@ -2,17 +2,22 @@
 name: Staging deployment
 
 on:
+    workflow_run:
+        workflows: ["Makefile test"]
+        branches: [main, link_jobs]
+        types: [completed]
     push: 
         branches:
             - 'main'
             - 'master'
-            - 'feat_staging'
+            - 'link_jobs'
     workflow_dispatch:
 
 jobs:
     staging_on_osx:
         runs-on: macos-latest
         environment: staging
+        if: ${{ always() }}
         steps:
             - uses: actions/checkout@v3
             - name: 'Deploy to staging'
