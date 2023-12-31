@@ -8,6 +8,7 @@
 <a href="https://repology.org/metapackage/oneliner"><img src="https://repology.org/badge/tiny-repos/oneliner.svg" alt="Packaging status"></a>
 <a href="https://tiswww.case.edu/php/chet/bash/bashtop.html"><img src="https://img.shields.io/badge/Bash-v4.4%5E-green?logo=GNU%20bash"></a>
 <a href="https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml"><img src="https://github.com/Surajkumar88/Oneliner/actions/workflows/make_test.yml/badge.svg"></a>
+<a href="https://github.com/Surajkumar88/Oneliner/actions/workflows/staging.yml"><img src="https://github.com/Surajkumar88/Oneliner/actions/workflows/staging.yml/badge.svg?event=deployment_status"></a>
 </p>
 
 <p align="center">
@@ -30,7 +31,7 @@
 ## Documents
 
 #### [CHANGELOG.md](CHANGELOG.md)
-
+/
 ## Description
 
 A command-line tool to convert multi-line bash script into a single line command.
