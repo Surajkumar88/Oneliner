@@ -3,7 +3,7 @@ name: Staging deployment
 
 on:
     workflow_run:
-        workflows: ["Makefile test"]
+        workflows: [Makefile test]
         branches:
             - 'main'
             - 'master'
