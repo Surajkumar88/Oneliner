@@ -7,7 +7,6 @@ on:
         branches:
             - 'main'
             - 'master'
-            - 'link_jobs'
         types: [completed]
     push: 
         branches:
@@ -31,6 +30,7 @@ jobs:
     staging_on_ubuntu:
         runs-on: ubuntu-latest
         environment: staging
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
             - uses: actions/checkout@v3
             - name: 'Deploy to staging'
