@@ -4,7 +4,10 @@ name: Staging deployment
 on:
     workflow_run:
         workflows: ["Makefile test"]
-        branches: [main, link_jobs]
+        branches:
+            - 'main'
+            - 'master'
+            - 'link_jobs'
         types: [completed]
     push: 
         branches:
@@ -17,7 +20,7 @@ jobs:
     staging_on_osx:
         runs-on: macos-latest
         environment: staging
-        if: ${{ always() }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
             - uses: actions/checkout@v3
             - name: 'Deploy to staging'
