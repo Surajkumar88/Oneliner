@@ -15,8 +15,11 @@ all:
 install:
 	@mkdir -p $(DESTDIR)
 	@cp -p oneliner $(DESTDIR)
+	@echo Checking Dependencies...
+	@bash require_install.sh
+	@echo Dependencies are installed
 	@echo "Oneliner v1.0.0 has been installed!!!"
 
 uninstall:
 	@rm -rf $(DESTDIR)/oneliner
-	@echo "Oneliner v1.0.0 has been uninstalled!!!"
+	@echo "All files related to Oneliner v1.0.0 have been removed."

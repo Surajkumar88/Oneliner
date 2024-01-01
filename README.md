@@ -31,7 +31,7 @@
 ## Documents
 
 #### [CHANGELOG.md](CHANGELOG.md)
-/
+
 ## Description
 
 A command-line tool to convert multi-line bash script into a single line command.
