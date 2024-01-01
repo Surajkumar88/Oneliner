@@ -20,7 +20,7 @@ jobs:
         environment: staging
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: 'Deploy to staging'
               run: |
                 make install
@@ -31,7 +31,7 @@ jobs:
         environment: staging
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
             - name: 'Deploy to staging'
               run: |
                 sudo make install
