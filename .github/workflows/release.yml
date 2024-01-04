@@ -1,0 +1,32 @@
+name: Create Release
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+jobs:
+    release:
+        name: Create Release on push with tag
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                fetch-depth: 0
+
+            - name: Make API call to create release
+              uses: actions/github-script@v7
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                script: | 
+                  await github.response(" POST /repos/${{ github.repository }}/release", {
+                    tag_name: '${{ github.ref_name }}',
+                    name: 'Test '+'${{ github.ref_name }}',
+                    prerelease: false,
+                    draft: false,
+                    generate_release_notes: true,
+                  });
+              
