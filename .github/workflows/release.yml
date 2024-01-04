@@ -22,7 +22,7 @@ jobs:
               with:
                 github-token: ${{ secrets.GITHUB_TOKEN }}
                 script: | 
-                  await github.request("POST /repos/${{ github.repository }}/release", {
+                  await github.request("POST /repos/${{ github.repository }}/releases", {
                     tag_name: '${{ github.ref_name }}',
                     name: 'Test '+'${{ github.ref_name }}',
                     prerelease: false,
