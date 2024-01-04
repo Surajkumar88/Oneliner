@@ -38,9 +38,9 @@ A command-line tool to convert multi-line bash script into a single-line command
 
 ## Features
 
-* Lightweight and simple to use in the command line.
+* Lightweight and simple tool to use in the command line🛠️.
 * Output can be shown in CLI, copied to a clipboard, or saved to file📥.
-* Formatting can be preserved in the output.
+* Formatting can be preserved in the output📋.
 
 ## Dependencies
 
@@ -80,7 +80,7 @@ git [-f | --file <file_path>] [-options <value>]
 ```
 #### Options
 
-    Options         Expected value      Description
+    Options         Expected Value      Description
     -f, --file      source path         path to the source file with the code to convert
     -o, --output    file path           save the output to file oneliner_out.txt in the given path (defaults to current working directory)
     -p, --print     on/off              verbose output in CLI
