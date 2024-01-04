@@ -34,19 +34,19 @@
 
 ## Description
 
-A command-line tool to convert multi-line bash script into a single line command.
+A command-line tool to convert multi-line bash script into a single-line command.
 
 ## Features
 
-* Lightweight and simple to use in the command-line.
-* Output can be shown in CLI, copied to clipboard or saved to file.
-* Formatting can be preserved in the output.
+* Lightweight and simple tool to use in the command line🛠️.
+* Output can be shown in CLI, copied to a clipboard, or saved to file📥.
+* Formatting can be preserved in the output📋.
 
 ## Dependencies
 
 #### OSX
 
-Use **[bash](https://www.gnu.org/software/bash/)** (v4.4 or later), script functionality migth break with earlier versions. 
+Use **[bash](https://www.gnu.org/software/bash/)** (v4.4 or later), script functionality might break with earlier versions. 
 
 **[GNU awk](https://www.gnu.org/software/gawk/)**
 
@@ -80,7 +80,7 @@ git [-f | --file <file_path>] [-options <value>]
 ```
 #### Options
 
-    Options         Expected value      Description
+    Options         Expected Value      Description
     -f, --file      source path         path to the source file with the code to convert
     -o, --output    file path           save the output to file oneliner_out.txt in the given path (defaults to current working directory)
     -p, --print     on/off              verbose output in CLI
