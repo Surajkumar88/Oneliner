@@ -18,8 +18,8 @@ install:
 	@echo Checking Dependencies...
 	@bash require_install.sh
 	@echo Dependencies are installed
-	@echo "Oneliner v1.0.0 has been installed!!!"
+	@echo "Oneliner v1.2.0 has been installed!!!"
 
 uninstall:
 	@rm -rf $(DESTDIR)/oneliner
-	@echo "All files related to Oneliner v1.0.0 have been removed."
+	@echo "All files related to Oneliner v1.2.0 have been removed."

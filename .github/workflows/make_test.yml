@@ -6,12 +6,10 @@ on:
         branches: 
             - 'main'
             - 'master'
-            - 'link_jobs'
     pull_request:
         branches: 
             - 'main'
             - 'master'
-            - 'link_jobs'
     workflow_dispatch:
 
 jobs:

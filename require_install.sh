@@ -1,7 +1,7 @@
 #!/bin/bash
 
 def_bash_version=$(printf "%d.%d" "${BASH_VERSINFO[0]}" "${BASH_VERSINFO[1]}")
-req_bash_version=4.2
+req_bash_version=3.2
 coreutils_version=$(ls --version 2> /dev/null || gls --version)
 coreutils_version="${coreutils_version[*]:19:3}"
 req_coreutils_version=8.22
