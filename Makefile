@@ -1,3 +1,14 @@
+## Feature toggle for progress bar dev
+## set to false by default
+PROGRESS_TOGGLE = true
+ifeq ($(PROGRESS_TOGGLE), false)
+	requirements = require_install.sh
+else
+	ifeq ($(PROGRESS_TOGGLE), true)
+		requirements = require_install_toggle.sh
+	endif
+endif
+
 
 distro = $(shell uname)
 # Setting the DESTDIR path based on the Distro detected
@@ -16,7 +27,7 @@ install:
 	@mkdir -p $(DESTDIR)
 	@cp -p oneliner $(DESTDIR)
 	@echo Checking Dependencies...
-	@bash require_install.sh
+	@bash $(requirements)
 	@echo Dependencies are installed
 	@echo "Oneliner v1.2.0 has been installed!!!"
 
