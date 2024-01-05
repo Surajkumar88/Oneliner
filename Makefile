@@ -24,11 +24,9 @@ all:
 	@echo Note: You may have to run this as root.
 
 install:
+	@/bin/bash $(requirements)
 	@mkdir -p $(DESTDIR)
 	@cp -p oneliner $(DESTDIR)
-	@echo Checking Dependencies...
-	@bash $(requirements)
-	@echo Dependencies are installed
 	@echo "Oneliner v1.2.0 has been installed!!!"
 
 uninstall:

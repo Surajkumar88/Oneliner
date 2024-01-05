@@ -19,8 +19,10 @@ coreutils_check() {
 }
 
 main() {
+    echo "Checking dependencies..."
     bash_check
     coreutils_check
+    echo "Dependencies are installed."
 }
 
 main
