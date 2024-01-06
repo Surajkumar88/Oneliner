@@ -4,7 +4,8 @@
 def_bash_version=$(printf "%d.%d" "${BASH_VERSINFO[0]}" "${BASH_VERSINFO[1]}")
 req_bash_version=3.2
 coreutils_version=$(ls --version 2> /dev/null || gls --version)
-coreutils_version="${coreutils_version[*]:19:3}"
+if [[ "${coreutils_version[*]:22:1}" = $'\n' ]]; then coreutils_version="${coreutils_version[*]:19:3}"
+else coreutils_version="${coreutils_version[*]:19:4}"; fi
 req_coreutils_version=8.22
 
 ## Initialising progress bar variables
@@ -20,7 +21,6 @@ bash_check() {
         echo "You have BASH $def_bash_version, please upgrade to BASH $req_bash_version or above for best compatibility."
     fi
     return 1
-
 }
 
 coreutils_check() {
@@ -28,7 +28,6 @@ coreutils_check() {
         echo "You have BASH $coreutils_version, please upgrade to BASH $req_coreutils_version or above for best compatibility."
     fi
     return 1
-
 }
 
 progress_bar_gen()  {
@@ -45,12 +44,10 @@ main() {
         msg_check+=("$($func_check)")
         current=$(( current+$? ))
         progress_bar_gen "$current" "$total"
-        # echo "$testvar"
         if [[ $current -eq $total ]]; then
             echo -e "\nAll dependencies are met."
         fi
     done
     for msg in "${msg_check[@]}"; do if [[ $msg != "" ]]; then echo "$msg"; fi; done
 }
-
 main
