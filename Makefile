@@ -1,15 +1,15 @@
-## Feature toggle for progress bar dev
+## Feature toggle for testig feature in development
 ## set to false by default
-PROGRESS_TOGGLE = true
-ifeq ($(PROGRESS_TOGGLE), false)
-	requirements = require_install.sh
+FEATURE_TOGGLE = false
+ifeq ($(FEATURE_TOGGLE), false)
+
 else
-	ifeq ($(PROGRESS_TOGGLE), true)
-		requirements = require_install_toggle.sh
+	ifeq ($(FEATURE_TOGGLE), true)
+
 	endif
 endif
 
-
+requirements = version_check.sh
 distro = $(shell uname)
 # Setting the DESTDIR path based on the Distro detected
 ifeq ($(distro), Linux)

@@ -12,30 +12,32 @@ req_coreutils_version=8.22
 func_list=("bash_check" "coreutils_check")
 total=${#func_list[@]}
 bar_size=50
-bar_scope=2
 current=0
 msg_check=()
 
+## Checking bash version 
 bash_check() {
-    if [[ $(bc <<< "$def_bash_version < $req_bash_version") -eq 1 ]]; then
+    if [[ $(echo "$def_bash_version $req_bash_version" | awk '{print ($1 < $2)}') == 1 ]]; then
         echo "You have BASH $def_bash_version, please upgrade to BASH $req_bash_version or above for best compatibility."
     fi
     return 1
 }
 
+##checking coreutils version
 coreutils_check() {
-    if [[ $(bc <<< "$coreutils_version < $req_coreutils_version") -eq 1 ]]; then
+    if [[ $(echo "$coreutils_version $req_coreutils_version" | awk '{print ($1 < $2)}') == 1 ]]; then
         echo "You have BASH $coreutils_version, please upgrade to BASH $req_coreutils_version or above for best compatibility."
     fi
     return 1
 }
 
+##to generate progress bar
 progress_bar_gen()  {
     done=$1
     total=$2
-    percent=$(bc <<< "scale=$bar_scope; $done*100/$total")
-    progress=$(bc <<< "scale=$bar_scope; $percent*$bar_size/100")
-    pending=$( bc <<< "scale=$bar_scope; $bar_size-$progress")
+    percent=$(echo "$done $total" | awk '{print ($1*100/$2)}')
+    progress=$(echo "$percent $bar_size" | awk '{print ($1*$2/100)}')
+    pending=$(echo "$bar_size $progress" | awk '{print ($1-$2)}')
     echo -ne "\rChecking dependencies : [$( printf "%${progress}s" | tr " " "#")$(printf "%${pending}s" | tr " " "-")] $percent"
 }
 
