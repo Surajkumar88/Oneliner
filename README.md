@@ -54,13 +54,13 @@ Use **[bash](https://www.gnu.org/software/bash/)** (v3.2 or later), script funct
 
 ## installation
 
-#### Manual installation OSX
+#### Manual installation
 
 > Clone and install 
 
 ```bash
 git clone https://github.com/Surajkumar88/Oneliner
-cd Oneliner
+cd Oneliner/src
 make install
 ```
 > To install in a custom directory
