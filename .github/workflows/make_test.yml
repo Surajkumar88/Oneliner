@@ -6,7 +6,6 @@ on:
         branches: 
             - 'main'
             - 'master'
-            - 'dev_bats'
     pull_request:
         branches: 
             - 'main'
@@ -33,7 +32,7 @@ jobs:
             - name: get tmate if job fails
               if: ${{ failure() }}
               uses: mxschmitt/action-tmate@v3
-              timeout-minutes: 15
+              timeout-minutes: 5
               with:
                 detached: true
     check-makefile-on-ubuntu:
@@ -53,7 +52,7 @@ jobs:
             - name: get tmate if job fails
               if: ${{ failure() }}
               uses: mxschmitt/action-tmate@v3
-              timeout-minutes: 15
+              timeout-minutes: 5
               with:
                 detached: true
 
