@@ -27,7 +27,9 @@ jobs:
                 cd src/
                 make install
             - name: Uninstalling app
-              run: make uninstall
+              run: |
+                cd src/
+                make uninstall
             - name: get tmate if job fails
               if: ${{ failure() }}
               uses: mxschmitt/action-tmate@v3
@@ -45,7 +47,9 @@ jobs:
                 cd src/
                 sudo make install
             - name: Uninstalling app
-              run: sudo make uninstall
+              run: |
+                cd src/
+                sudo make uninstall
             - name: get tmate if job fails
               if: ${{ failure() }}
               uses: mxschmitt/action-tmate@v3
