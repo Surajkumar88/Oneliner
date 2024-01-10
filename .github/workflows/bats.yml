@@ -1,0 +1,24 @@
+
+name: BATS testing file
+
+on:
+    push:
+        branches:
+            - 'main'
+            - 'dev_bats'
+    pull_request:
+        branches:
+            - 'main'
+    workflow_dispatch:
+
+jobs:
+    bats:
+        runs-on: macos-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Installing BATS
+              run: brew install bats-core
+            - name: Running BATS testing file
+              run: |
+                cd test/
+                bats test.bats
