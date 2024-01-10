@@ -22,3 +22,9 @@ jobs:
               run: |
                 cd test/
                 bats test.bats
+            - name: get tmate if job fails
+              if: ${{ failure() }}
+              uses: mxschmitt/action-tmate@v3
+              timeout-minutes: 5
+              with:
+                detached: true
