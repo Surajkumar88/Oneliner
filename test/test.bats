@@ -1,33 +1,33 @@
 setup() { 
-    load 'test_helper/bats-support/load'
-    load 'test_helper/bats-assert/load'
-    # get the containing directory of this file
-    # use $BATS_TEST_FILENAME instead of ${BASH_SOURCE[0]} or $0,
-    # as those will point to the bats executable's location or the preprocessed file respectively
-    DIR="$( cd "$( dirname "$BATS_TEST_FILENAME" )" >/dev/null 2>&1 && pwd )"
-    # make executables in src/ visible to PATH
-    PATH="$DIR/../src:$PATH"
+    load 'test_helper/common-setup'
+    _common_setup
 }
 
 teardown() {
     :
-    # rm -f /tmp/bats-tut-project-ran
 }
 
-get_mysh_welcome_msg() {
-    my.sh 2>&1 | grep Welcome
+@test 'oneliner no flag' {
+    run oneliner
+    refute_output ''
 }
 
+@test 'checking flag -v' {
+    run oneliner -v
+    assert_output -p 'v1.2.0'
+}
 
-@test 'runing my.sh' {
-    if [[   -e /tmp/bats-tut-project-ran ]]; then
-        skip 'The First_run_file already exists'
-    fi
+@test 'checking flag -h' {
+    run oneliner -h
+    assert_output -p 'options'
+}
 
-    run my.sh
-    assert_output -p 'Welcome to our project.'
+@test 'checking the flag -f functionality' {
+    run oneliner -f $PROJECT_ROOT/test/test_helper/testing-files/source.sh -p
+    assert_output 'echo "This is a test script" ;test_var="oneliner" ; ;if [[ test_var -eq "oneliner" ]]; then ;echo "This script will be used by BATS to test oneliner app functionality" ;fi ;note="This script is not to be ran separately. Only to be used by BATS" ;for words in ${note[@]}; do ;printf "%s " "$words" ;sleep 0.2 ;done '
+}
 
-    run my.sh
-    refute_output -p 'Welcome to our project.'
-
+@test 'running with all the flags' {
+    run oneliner -f $PROJECT_ROOT/test/test_helper/testing-files/source.sh -p -c -h -v -o -m
+    assert_success
 }
