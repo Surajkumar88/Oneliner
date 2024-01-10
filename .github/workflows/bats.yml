@@ -5,7 +5,6 @@ on:
     push:
         branches:
             - 'main'
-            - 'dev_bats'
     pull_request:
         branches:
             - 'main'
