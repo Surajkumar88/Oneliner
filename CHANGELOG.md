@@ -3,6 +3,11 @@
 This file contains all changelogs for latest releases from Oneliner v1.0.0 onwards. 
 Changelogs for version before v1.0.0 weren't maintained as this project was unreleased (in Beta).
 
+## v1.3.0
+* Added: Progress bar while checking for dependencies.
+* Added: feature toggle for future development
+* Added: Unit tests using BATS(bash automated testing system) to test the integrity of each push.
+
 ## v1.2.0
 * Added: Deploymet of code to staging environment after a push to main branch.
 * Added: Changelog file.

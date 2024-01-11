@@ -27,8 +27,8 @@ install:
 	@/bin/bash $(requirements)
 	@mkdir -p $(DESTDIR)
 	@cp -p oneliner $(DESTDIR)
-	@echo "Oneliner v1.2.0 has been installed!!!"
+	@echo "Oneliner v1.3.0 has been installed!!!"
 
 uninstall:
 	@rm -rf $(DESTDIR)/oneliner
-	@echo "All files related to Oneliner v1.2.0 have been removed."
+	@echo "All files related to Oneliner v1.3.0 have been removed."
