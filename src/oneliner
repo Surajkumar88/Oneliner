@@ -49,8 +49,8 @@ converter(){
                 fi
                 final=$final$line"; "
             done < "$tmp_file_path"
-            # size=${#final}
-            final=${final[*]:$start+2} 
+            size=${#final}
+            final=${final[*]:$start+2:$size-15} 
         else
             final=$(<"$file_path")
         fi
