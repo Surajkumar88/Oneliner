@@ -14,7 +14,7 @@ teardown() {
 
 @test 'checking flag -v' {
     run oneliner -v
-    assert_output -p 'v1.2.0'
+    assert_output -p 'v1.3.0'
 }
 
 @test 'checking flag -h' {
