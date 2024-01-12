@@ -41,19 +41,16 @@ converter(){
     if [[ -n $file_path && $file_path != "-"* ]]; then 
         IFS=$'\n'
         if [[ $to_multiline = "off" ]]; then
-            ###### depcreted tmp operation
-            # tmp=$(cat "$file_path" | awk '{$1=$1;print}')
             tmp=$( awk '{$1=$1;print}' < "$file_path" )
             printf "%s\n" "$tmp" > "$tmp_file_path"
-            ###### Deprecated read loop
-            # for LINE in $(cat "$tmp_file_path")
-            #     do final=$final$LINE" ;"
-            # done
-            while read -r line;
-                do final=$final$line" ;"
+            for line in ${tmp[@]}; do
+                if [[ "${line[*]:0:2}" = "#"\! ]]; then
+                    start=${#line}
+                fi
+                final=$final$line"; "
             done < "$tmp_file_path"
             size=${#final}
-            final=${final[*]:15:$size-17} 
+            final=${final[*]:$start+2:$size-15} 
         else
             final=$(<"$file_path")
         fi
