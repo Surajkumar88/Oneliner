@@ -1,5 +1,5 @@
 
-name: BATS testing file
+name: BATS & ShellCheck testing
 
 on:
     push:
@@ -33,8 +33,9 @@ jobs:
         name: Shellcheck
         runs-on: macos-latest
         steps:
-          - uses: actions/checkout@v4
-          - name: Run shellcheck
-            uses: ludeeus/action-shellcheck@master
-            with: './src'
-
+        - uses: actions/checkout@v4
+        - name: Run shellcheck
+          uses: ludeeus/action-shellcheck@master
+          with:
+            severity: error
+            scandir: './src'

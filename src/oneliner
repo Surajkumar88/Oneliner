@@ -43,7 +43,7 @@ converter(){
         if [[ $to_multiline = "off" ]]; then
             tmp=$( awk '{$1=$1;print}' < "$file_path" )
             printf "%s\n" "$tmp" > "$tmp_file_path"
-            for line in ${tmp[@]}; do
+            for line in ${tmp[*]}; do
                 if [[ "${line[*]:0:2}" = "#"\! ]]; then
                     start=${#line}
                 fi
