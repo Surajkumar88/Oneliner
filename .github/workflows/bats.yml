@@ -36,7 +36,7 @@ jobs:
               with:
                 submodules: true
             - name: Installing BATS
-              run: sudo apt-get install -y bats-core
+              run: sudo apt-get install -y bats
             - name: Running BATS testing file
               run: |
                 cd test/
