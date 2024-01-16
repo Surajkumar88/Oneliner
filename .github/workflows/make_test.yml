@@ -46,6 +46,7 @@ jobs:
               run: |
                 cd src/
                 sudo make install
+                man oneliner
             - name: Uninstalling app
               run: |
                 cd src/
