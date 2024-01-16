@@ -10,14 +10,16 @@ else
 endif
 
 requirements = version_check.sh
-MANDIR = /usr/share/man/man1
+
 distro = $(shell uname)
 # Setting the DESTDIR path based on the Distro detected
 ifeq ($(distro), Linux)
 	DESTDIR = /usr/bin
+	MANDIR = /usr/share/man/man1
 else 
 	ifeq ($(distro), Darwin)
 		DESTDIR = /usr/local/bin
+		MANDIR = /usr/local/share/man/man1
 	endif
 endif
 all:
