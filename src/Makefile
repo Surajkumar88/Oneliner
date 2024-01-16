@@ -10,6 +10,7 @@ else
 endif
 
 requirements = version_check.sh
+MANDIR = /usr/share/man/man1
 distro = $(shell uname)
 # Setting the DESTDIR path based on the Distro detected
 ifeq ($(distro), Linux)
@@ -27,8 +28,10 @@ install:
 	@/bin/bash $(requirements)
 	@mkdir -p $(DESTDIR)
 	@cp -p oneliner $(DESTDIR)
+	@cp -p oneliner.1 $(MANDIR)
 	@echo "Oneliner v1.3.0 has been installed!!!"
 
 uninstall:
 	@rm -rf $(DESTDIR)/oneliner
+	@rm -rf $(MANDIR)/oneliner.1
 	@echo "All files related to Oneliner v1.3.0 have been removed."

@@ -25,6 +25,7 @@ jobs:
               run: |
                 cd src/
                 make install
+                man oneliner
             - name: Uninstalling app
               run: |
                 cd src/
