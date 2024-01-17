@@ -1,0 +1,23 @@
+name: Comment on PR when test fails.
+
+on:
+    pull_request:
+        branches:
+            - 'main'
+
+jobs:
+    pr_comment:
+        name: Create Commnent on PR
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: write
+            contents: write
+        steps:
+          - name: Create comment on PR
+            uses: actions/github-script@v7
+            with:
+              github-token: ${{ secrets.GITHUB_TOKEN }}
+              script: |
+                await github.request("POST /repos/${{ github.repository }}/issues/${{ github.event.number }}/comments", {
+                  body: 'this comment will be posted on the PR if a critical test for the merge fails.',
+                });
