@@ -2,8 +2,10 @@ name: Comment on PR when test fails.
 
 on:
     pull_request:
-        branches:
-            - 'main'
+      types:
+        - opened
+      branches:
+        - 'main'
 
 jobs:
     pr_comment:
