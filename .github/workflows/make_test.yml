@@ -3,13 +3,14 @@ name: Makefile test
 
 on:
     push: 
-        branches: 
-            - 'main'
-            - 'master'
+      branches: 
+        - '*'
     pull_request:
-        branches: 
-            - 'main'
-            - 'master'
+      types:
+        - closed
+      branches: 
+        - 'main'
+        - 'master'
     workflow_dispatch:
 
 jobs:
