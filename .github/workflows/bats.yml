@@ -3,11 +3,13 @@ name: BATS & ShellCheck testing
 
 on:
     push:
-        branches:
-            - '*'
+      branches:
+        - '*'
     pull_request:
-        branches:
-            - 'main'
+      types:
+        - closed
+      branches:
+        - 'main'
     workflow_dispatch:
 
 jobs:
