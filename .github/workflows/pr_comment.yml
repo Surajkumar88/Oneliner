@@ -2,8 +2,10 @@ name: Comment on PR when test fails.
 
 on:
     pull_request:
-        branches:
-            - 'main'
+      types:
+        - opened
+      branches:
+        - 'main'
 
 jobs:
     pr_comment:
@@ -19,5 +21,5 @@ jobs:
               github-token: ${{ secrets.GITHUB_TOKEN }}
               script: |
                 await github.request("POST /repos/${{ github.repository }}/issues/${{ github.event.number }}/comments", {
-                  body: 'this comment will be posted on the PR if a critical test for the merge fails.',
+                  body: 'Make sure that "BATS & ShellCheck testing" and "Makefile test" workflows pass successfully.',
                 });
