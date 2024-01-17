@@ -19,5 +19,5 @@ jobs:
               github-token: ${{ secrets.GITHUB_TOKEN }}
               script: |
                 await github.request(" POST /repos/${{ github.repository }}/issues/${{ github.event.number }}/comments", {
-                  body: "this comment will be posted on the PR if a critical test for the merge fails."
+                  body: "this comment will be posted on the PR if a critical test for the merge fails.",
                 });
