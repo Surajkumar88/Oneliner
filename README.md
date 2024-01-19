@@ -44,13 +44,9 @@ A command-line tool to convert multi-line bash script into a single-line command
 
 ## Dependencies
 
-#### OSX
-
 Use **[bash](https://www.gnu.org/software/bash/)** (v3.2 or later), script functionality might break with earlier versions. 
 
 **[GNU awk](https://www.gnu.org/software/gawk/)**
-
-### *Support for other Linux Distros coming soon!!!*
 
 ## installation
 
