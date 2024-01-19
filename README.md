@@ -68,6 +68,7 @@ make DESTDIR=path/to/directory install
 > To uninstall
 
 ```bash
+cd Oneliner/src
 make uninstall
 ```
 ## Usage
