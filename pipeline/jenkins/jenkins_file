@@ -5,9 +5,9 @@ pipeline
             label 'agent1_docker'
             }
         } 
-    // triggers {
-    //     pollSCM '* * * * *'
-    // }
+    triggers {
+        pollSCM '*/1 * * * *'
+    }
     stages {
         stage('Installing make') {
             steps {
