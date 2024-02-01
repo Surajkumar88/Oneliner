@@ -1,0 +1,39 @@
+pipeline 
+{
+    agent { 
+        node {
+            label 'agent1_docker'
+            }
+        } 
+    // triggers {
+    //     pollSCM '* * * * *'
+    // }
+    stages {
+        stage('Installing make') {
+            steps {
+                echo "Installing make.."
+                sh '''
+                apk add make
+                '''
+            }
+        }
+        stage('Clonging and installing') {
+            steps {
+                echo "Cloning and installing.."
+                sh '''
+                cd src
+                make install
+                '''
+            }
+        }
+        stage('Testing') {
+            steps {
+                echo 'checking version....'
+                sh '''
+                oneliner -v
+                oneliner -h
+                '''
+            }
+        }
+    }
+}
