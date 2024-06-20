@@ -34,7 +34,7 @@
 
 ## Description
 
-A command-line tool to convert multi-line bash scripts into a single-line command.
+A command-line tool to convert multi-line bash script into a single-line command.
 
 ## Features
 
