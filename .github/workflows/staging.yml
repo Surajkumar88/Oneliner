@@ -20,7 +20,7 @@ jobs:
         environment: staging
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: 'Deploy to staging'
               run: |
                 cd src/
@@ -32,7 +32,7 @@ jobs:
         environment: staging
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
             - name: 'Deploy to staging'
               run: |
                 cd src/
