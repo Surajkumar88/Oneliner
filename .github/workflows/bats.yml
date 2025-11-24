@@ -16,7 +16,7 @@ jobs:
     bats-on-macos:
         runs-on: macos-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
               with:
                 submodules: true
             - name: Installing BATS
@@ -34,7 +34,7 @@ jobs:
     bats-on-ubuntu:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
               with:
                 submodules: true
             - name: Installing BATS
@@ -53,7 +53,7 @@ jobs:
         name: Shellcheck on macos
         runs-on: macos-latest
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v6
         - name: Run shellcheck
           uses: ludeeus/action-shellcheck@master
           with:
@@ -63,7 +63,7 @@ jobs:
         name: Shellcheck on ubuntu
         runs-on: ubuntu-latest
         steps:
-        - uses: actions/checkout@v4
+        - uses: actions/checkout@v6
         - name: Run shellcheck
           uses: ludeeus/action-shellcheck@master
           with:
